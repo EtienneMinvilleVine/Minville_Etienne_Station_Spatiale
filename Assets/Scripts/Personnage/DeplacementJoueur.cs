@@ -62,7 +62,7 @@ public class DeplacementJoueur : MonoBehaviour
 
     public void MettreAJourRotation(float directionX)
     {
-        transform.Rotate(Vector3.up * directionX * vitesseRotation);
+        transform.Rotate(Vector3.up * directionX * vitesseRotation * Time.deltaTime);
     }
 
     public void MettreAJourDeplacement(Vector3 direction)
