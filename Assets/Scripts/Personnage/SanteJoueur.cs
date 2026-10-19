@@ -28,16 +28,23 @@ public class SanteJoueur : MonoBehaviour
 
     void Update()
     {
-
+    //    niveauOxygene -= perteOxygene * Time.deltaTime;
+    RecevoirDegats(perteOxygene * Time.deltaTime);
     }
-    public void RecevoirDegats(int degats)
+    public void RecevoirDegats(float degats)
     {
-
+        niveauOxygene -= degats;
+        // if (niveauOxygene < 0)
+        // {
+        //     niveauOxygene = 0;
+        // }
+        niveauOxygene = Mathf.Clamp(niveauOxygene, 0, niveauOxygeneMax);
     }
 
     public void Soigner(int soins)
     {
-
+       niveauOxygene += soins;
+       niveauOxygene = Mathf.Clamp(niveauOxygene, 0, niveauOxygeneMax);
     }
 
 
