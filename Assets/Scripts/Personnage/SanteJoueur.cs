@@ -39,6 +39,10 @@ public class SanteJoueur : MonoBehaviour
         //     niveauOxygene = 0;
         // }
         niveauOxygene = Mathf.Clamp(niveauOxygene, 0, niveauOxygeneMax);
+        if (niveauOxygene <= 0 && controles.etatPerso != EtatPerso.MORT)
+        {
+            StartCoroutine(Mourir());
+        }
     }
 
     public void Soigner(int soins)
@@ -48,8 +52,16 @@ public class SanteJoueur : MonoBehaviour
     }
 
 
-    // public IEnumerator Mourir()
-    // {
-
-    // }
+    public IEnumerator Mourir()
+    {
+        
+        // Changer l'etat du personnage
+        controles.etatPerso = EtatPerso.MORT;
+        // Declencher un son de fin
+        // Declencher l'animation de mort
+        animator.SetTrigger("mort");
+        // Quand l'animation est terminee, redemarrer le jeu
+        yield return new WaitForSeconds(3);
+        controles.RedemarrerPartie();
+    }
 }
