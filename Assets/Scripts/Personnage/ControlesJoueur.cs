@@ -163,6 +163,8 @@ public class ControlesJoueur : MonoBehaviour
         if (hit.gameObject.tag == "danger")
         {
             santeJoueur.RecevoirDegats(10);
+            Vector3 direction = transform.position - hit.transform.position;
+            deplacementJoueur.AjouterForce(direction, 5);
         }
         if (hit.gameObject.tag == "oxygene")
         {
