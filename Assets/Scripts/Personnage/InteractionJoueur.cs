@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
+
 public class InteractionJoueur : MonoBehaviour
 {
     [Header("Raycast d'interaction")]
@@ -33,7 +34,23 @@ public class InteractionJoueur : MonoBehaviour
     }
     public void DetecterInterrupteur()
     {
+        Vector3 origine = transform.position + Vector3.up;
+        Vector3 direction = transform.forward;
+        if (Physics.Raycast(origine, direction, out RaycastHit collision, distanceInteraction, 
+        couchesInteractives, QueryTriggerInteraction.Collide))
+        {
+            Interrupteur scriptInterrupteur = collision.collider.GetComponent<Interrupteur>();
 
+            // Detecter le script de l'interrupteur
+            if (scriptInterrupteur != null)
+            {
+                scriptInterrupteur.Activer();
+              
+            }  
+            controles.Invoke("RetourEtatLibre", 3f);
+            // declencher l'animation du bouton
+            // activer l'animation sur la porte
+        }
     }
 
 

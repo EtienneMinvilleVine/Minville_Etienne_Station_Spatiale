@@ -111,10 +111,17 @@ public class ControlesJoueur : MonoBehaviour
             {
                 deplacementJoueur.Dash();
             }
+            if (interactionInput)
+            {
+                etatPerso = EtatPerso.INTERACTION;
+                interactionJoueur.DetecterInterrupteur();
+                animator.SetTrigger("bouton");
+            }
         }
 
         //Placer ici les autres actions autorisées en état LIBRE, comme l'attaque et l'interaction.
         
+
 
         // Placer ici les autres actions autorisées peut importe l'état comme la pause.
 
